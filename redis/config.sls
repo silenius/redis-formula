@@ -15,6 +15,21 @@ redis_config_file:
 
 {% if redis.config is defined %}
 
+{% for key, value in redis.config.items() %}
+
+{% if key in ('dir', ) %}
+redis_config_{{ key }}:
+  file.directory:
+    - name: {{ value }}
+    - owner: redis
+    - group: redis
+    - mode: 755
+    - watch_in:
+      - file: redis_override_config_file
+{% endif %}
+
+{% endfor %}
+
 redis_override_config_file:
   file.append:
     - name: {{ redis.config_file }}
@@ -40,6 +55,3 @@ redis_override_config:
       - file: redis_override_config_file
 
 {% endif %}
-
-
-
