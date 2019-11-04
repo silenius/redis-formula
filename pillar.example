@@ -1,0 +1,9 @@
+redis:
+  pkg: redis
+  service: redis
+  config_file: /usr/local/etc/redis.conf
+  default_config_file: /usr/local/etc/redis.conf.sample
+  override_config_file: /usr/local/etc/redis_override.conf
+  config:
+    port: 6379
+    maxclients: 1000
