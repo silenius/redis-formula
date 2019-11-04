@@ -21,7 +21,7 @@ redis_config_file:
 redis_config_{{ key }}:
   file.directory:
     - name: {{ value }}
-    - owner: redis
+    - user: redis
     - group: redis
     - mode: 755
     - watch_in:
